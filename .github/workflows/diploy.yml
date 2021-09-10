@@ -25,7 +25,7 @@ jobs:
       uses: appleboy/ssh-action@v0.1.4
       with: 
         password: ${{secrets.SSH_PASSWORD}}
-        host: ${{SSH_HOST}}
+        host: ${{secrets.SSH_HOST}}
         username: ${{secrets.SSH_USERNAME}}
         script: |
           pm2 delete scratchpay
