@@ -18,5 +18,13 @@ describe('Initialize', ():void => {
 });
 
 describe('Search routes', ():void => {
-  it('');
+  it('Search all', (done) => {
+    done();
+  });
+  it('Search Dentists', (done) => {
+    done();
+  });
+  it('Search Vets', (done) => {
+    done();
+  });
 });
