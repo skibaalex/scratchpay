@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import express, { Application, Request, Response } from 'express';
+import express, {
+  Application, Request, Response,
+} from 'express';
 import config from './config';
 import router from './routes';
 import { dirHandler, writeFile } from './utils';

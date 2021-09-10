@@ -11,14 +11,16 @@ router.get('/search', (req: Request, res: Response) => {
   res.send(sorted);
 });
 
-router.get('/search/dentists', (_req: Request, res: Response) => {
-  const { dental } = loadData();
-  res.send(dental);
+router.get('/search/dentists', (req: Request, res: Response) => {
+  const rawData = loadData();
+  const sorted = searchArray(rawData.dental, req.query as unknown as Query);
+  res.send(sorted);
 });
 
-router.get('/search/vets', (_req: Request, res: Response) => {
-  const { vet } = loadData();
-  res.send(vet);
+router.get('/search/vets', (req: Request, res: Response) => {
+  const rawData = loadData();
+  const sorted = searchArray(rawData.vet, req.query as unknown as Query);
+  res.send(sorted);
 });
 
 export default router;
