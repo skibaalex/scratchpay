@@ -3,6 +3,7 @@ import axios from 'axios';
 import express, { Application, Request, Response } from 'express';
 import config from './config';
 import router from './routes';
+import { dirHandler, writeFile } from './utils';
 
 class Server {
   port: string | number | undefined;
@@ -13,6 +14,7 @@ class Server {
     this.port = port || process.env.PORT || 5000;
     this.app = express();
     this.loadRoutes();
+    this.getData();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -21,6 +23,11 @@ class Server {
     const dentalJson = dental.data;
     const vet = await axios.get(config.vetClinicsUrl);
     const vetJson = await vet.data;
+
+    // handle file system to store received data
+    dirHandler();
+    writeFile(JSON.stringify(dentalJson, null, 2), 'dentalClinics.json', () => console.log('Dental  clinics data was loaded'));
+    writeFile(JSON.stringify(vetJson, null, 2), 'vetClinics.json', () => console.log('Vet  clinics data was loaded'));
   }
 
   loadRoutes() {
