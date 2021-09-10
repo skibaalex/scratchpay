@@ -17,6 +17,7 @@ class Server {
     this.getData();
   }
 
+  // assuming data has the correct structure
   // eslint-disable-next-line class-methods-use-this
   async getData() {
     const dental = await axios.get(config.dentalClinicsUrl);

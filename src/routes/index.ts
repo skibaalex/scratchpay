@@ -1,17 +1,24 @@
 import { Request, Response, Router } from 'express';
+import { Query } from '../types';
+import { loadData, searchArray } from '../utils';
 
 const router = Router();
 
-router.get('/search', (_req: Request, res: Response) => {
-  res.send('search all');
+router.get('/search', (req: Request, res: Response) => {
+  const rawData = loadData();
+  const data = [...rawData.dental, ...rawData.vet];
+  const sorted = searchArray(data, req.query as unknown as Query);
+  res.send(sorted);
 });
 
 router.get('/search/dentists', (_req: Request, res: Response) => {
-  res.send('search dentists');
+  const { dental } = loadData();
+  res.send(dental);
 });
 
 router.get('/search/vets', (_req: Request, res: Response) => {
-  res.send('search vets');
+  const { vet } = loadData();
+  res.send(vet);
 });
 
 export default router;
