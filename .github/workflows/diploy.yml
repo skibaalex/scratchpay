@@ -13,20 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        path: server
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-      
     - run: npm run build --if-present
     - run: npm test
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v0.1.4
       with: 
-        key: ${(secrets.SSH_SECRET)}
+        password: ${(secrets.SSH_PASSWORD)}
         host: ${(SSH_HOST)}
         username: ${(secrets.SSH_USERNAME)}
         script: |
