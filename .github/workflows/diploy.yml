@@ -24,9 +24,9 @@ jobs:
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v0.1.4
       with: 
-        password: ${(secrets.SSH_PASSWORD)}
-        host: ${(SSH_HOST)}
-        username: ${(secrets.SSH_USERNAME)}
+        password: ${{secrets.SSH_PASSWORD}}
+        host: ${{SSH_HOST}}
+        username: ${{secrets.SSH_USERNAME}}
         script: |
           pm2 delete scratchpay
           cd scratchpay
