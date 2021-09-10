@@ -13,8 +13,9 @@ export function normalizeData(clinic: Clinic): NormalizedClinic {
     clinic.stateName = find(usStates, (state) => state.abbreviation === clinic.stateCode)?.name;
   } else {
     // eslint-disable-next-line no-param-reassign
-    clinic.clinicName = find(usStates, (state) => state.name === clinic.clinicName)?.abbreviation;
+    clinic.stateCode = find(usStates, (state) => state.name === clinic.stateName)?.abbreviation;
   }
+
   const norm = {
     name: clinic.name ? clinic.name : clinic.clinicName,
     opening: clinic.opening ? clinic.opening : clinic.availability,
@@ -57,7 +58,7 @@ export function filterOpening(clinic: NormalizedClinic, query: string): boolean 
    * @returns Boolean
    */
 export function filterState(clinic: NormalizedClinic, query:string): boolean {
-  const nameMatch = clinic.stateName.includes(query);
-  const codeMatch = clinic.stateCode.includes(query);
+  const nameMatch = clinic.stateName.toUpperCase().includes(query.toUpperCase());
+  const codeMatch = clinic.stateCode.toUpperCase().includes(query.toUpperCase());
   return (nameMatch || codeMatch);
 }

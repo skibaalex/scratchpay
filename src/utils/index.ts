@@ -9,6 +9,7 @@ import { DATA_PATH } from '../config';
 import {
   filterName, filterOpening, filterState, normalizeData,
 } from './filter';
+
 /**
  * Check if a directory data exists if not creates one
  * this method is used to make sure that the write method won't fail
@@ -58,6 +59,7 @@ export const loadData = (): ClinicsData => {
  * @returns @type {Array<Clinic>}
  */
 export const searchArray = (data: Clinic[], query: Query): Clinic[] => {
+  if (!Object.keys(query).length) return data;
   const { name, opening, state } = query;
   const match:any = {};
   const sorted = filter(data, (clinic: Clinic) => {
