@@ -28,3 +28,8 @@ describe('Search routes', ():void => {
     done();
   });
 });
+
+after('Exit mocha gracefully after finishing all tests execution', () => {
+  // Exit node process
+  process.exit();
+});
