@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import express, { Application, Request, Response } from 'express';
+import router from './routes';
 
 class Server {
   port: string | number | undefined;
@@ -9,6 +10,11 @@ class Server {
   constructor(port?: number) {
     this.port = port || process.env.PORT || 5000;
     this.app = express();
+    this.loadRoutes();
+  }
+
+  loadRoutes() {
+    this.app.use('/api/v1/', router);
   }
 
   serve() {

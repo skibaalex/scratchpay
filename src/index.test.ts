@@ -19,13 +19,22 @@ describe('Initialize', ():void => {
 
 describe('Search routes', ():void => {
   it('Search all', (done) => {
-    done();
+    request(server.app).get('/').expect(200).end((_err, res) => {
+      assert.equal(res.text, 'search all');
+      done();
+    });
   });
   it('Search Dentists', (done) => {
-    done();
+    request(server.app).get('/').expect(200).end((_err, res) => {
+      assert.equal(res.text, 'search dentists');
+      done();
+    });
   });
   it('Search Vets', (done) => {
-    done();
+    request(server.app).get('/').expect(200).end((_err, res) => {
+      assert.equal(res.text, 'search vets');
+      done();
+    });
   });
 });
 
