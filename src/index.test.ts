@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import request from 'supertest';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import server from '.';
 
 describe('Initialize', ():void => {
@@ -20,7 +20,7 @@ describe('Initialize', ():void => {
 describe('Search routes', ():void => {
   it('Search all', (done) => {
     request(server.app).get('/api/v1/search').expect(200).end((_err, res) => {
-      assert.equal(res.text, 'search all');
+      expect(res.body).to.be('array');
       done();
     });
   });
