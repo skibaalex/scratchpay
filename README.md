@@ -19,4 +19,5 @@ I do believe there will be bugs in the program.
 
 ## Nice To Have
 - [x] Implementation for any CI tool for the project.
-- [ ] Project Dockerization (ran out of time).
+    Implemented CI with Github Actions.
+- [ ] Project Dockerization.
